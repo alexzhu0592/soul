@@ -7,6 +7,9 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.dromara/soul.svg?label=maven%20central)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.dromara%22%20AND%soul)
 [![QQ群](https://img.shields.io/badge/chat-on%20QQ-ff69b4.svg?style=flat-square)](https://shang.qq.com/wpa/qunwpa?idkey=03bbb6f74b3257989316c0a8cf07cec117314dbdfe4fa7a20870b298b7db2c3b)
 
+### alex-src  
+  alex-src分支在根据目前架构分析，需要单独维护一个管理后台，增加了运维的复杂度，打算把这一块
+  直接集成到nacos上，nacos已经作为了常用的配置中心和服务注册发现的工具
 
 ### Reactive gateway based on webflux
 
@@ -20,59 +23,59 @@
   
 # Modules
 
- * soul-admin : Plug-in and other information configuration management background
- 
- * soul-bootstrap : With the startup project, users can refer to
- 
- * soul-common :  Framework common class
- 
- * soul-configuration : zookeeper configuration project
- 
- * soul-spring-boot-starter : Support for the spring boot starter
- 
- * soul-web : Core processing packages include plug-ins, request routing and forwarding, and so on
- 
- * soul-extend-demo : Demo of the extension point
- 
- * soul-test : the rpc test project
+ * soul-admin : Plug-in and other information configuration management background  
+   soul管理后台：插件和其他配置信息的管理后台
+ * soul-bootstrap : With the startup project, users can refer to  
+   soul启动器：用户能够参考启动项目
+ * soul-common :  Framework common class  
+   soul-common模块：框架常用的类
+ * soul-configuration : zookeeper configuration project  
+   soul配置：zk配置项目
+ * soul-spring-boot-starter : Support for the spring boot starter  
+   soul的springboot starter：支持springboot
+ * soul-web : Core processing packages include plug-ins, request routing and forwarding, and so on  
+   soul的web：soul的主要处理流程，包括插件，请求转发和请求路径等等
+ * soul-extend-demo : Demo of the extension point  
+   soul的扩展demo
+ * soul-test : the rpc test project  
+   soul的rpc单元测试项目
+# Features 特性
 
-# Features
-
-   * It provides plugins such as current limiting, fusing, forwarding, routing monitoring and so on.
-   
-   * Seamless docking with HTTP,Restful,websocket,dubbo and springcloud.
-   
-   * Plug-in hot plug, users can customize the development.
-   
-   * Selectors and rules are dynamically configured for flexible matching.
-
-   * Support for cluster deployment.
-   
-   * Support A/B test and grayscale publishing。
-   
+   * It provides plugins such as current limiting, fusing, forwarding, routing monitoring and so on.  
+     提供了诸如限流，转发，路径监控等等的插件
+   * Seamless docking with HTTP,Restful,websocket,dubbo and springcloud.  
+     无侵入集成http、restful、websocket、dubbo和springcloud
+   * Plug-in hot plug, users can customize the development.  
+     支持热插拔。用户可以进行自定义开发
+   * Selectors and rules are dynamically configured for flexible matching.  
+     通过动态配置选择器和规则实现灵活的匹配
+   * Support for cluster deployment.  
+     支持集群部署
+   * Support A/B test and grayscale publishing。  
+     支持ab测试和灰度发布
 
 # Plugin
 
- Whenever a request comes in ,Soul Execute all open plug-ins through the chain of responsibility.
- 
- Plugins are the heart of soul And plug-ins are extensible and hot-pluggable.
- 
- Different plug-ins do different things 
- 
- Of course, users can also customize plug-ins to meet their own needs.
- 
+ Whenever a request comes in ,Soul Execute all open plug-ins through the chain of responsibility.  
+ 当一个请求竟来的时候soul会执行一系列的责任链  
+ Plugins are the heart of soul And plug-ins are extensible and hot-pluggable.  
+ 插件是soul的核心，插件是可扩展的和可热插拔的  
+ Different plug-ins do different things   
+ 不同的插件做不同的事情  
+ Of course, users can also customize plug-ins to meet their own needs.  
+ 当然，用户可以自定义插件去满足自己的要求   
  If you want to customize, see [plugin-extend](https://dromara.org/website/zh-cn/docs/soul/extend.html)
  
 
 # Selector & rule 
 
-  According to your HTTP request headers, selectors and rules are used to route your requests.
+  According to your HTTP request headers, selectors and rules are used to route your requests.  
+  通过你http请求头，选择器和规则会用于路由你的请求  
+  Selector is your first route, It is coarser grained, for example, at the module level.  
+  选择器是你的第一个路由，在模块层面，是粗粒度的  
+  Rule is your second route and what do you think your request should do,For example a method level in a module.  
   
-  Selector is your first route, It is coarser grained, for example, at the module level.
-  
-  Rule is your second route and what do you think your request should do,For example a method level in a module.
-  
-  The selector and the rule match only once, and the match is returned. So the coarsest granularity should be sorted last.
+  The selector and the rule match only once, and the match is returned. So the coarsest granularity should be sorted last.  
    
   
 # Data Caching  & Data Sync
