@@ -36,6 +36,7 @@ public final class SoulWebHandler implements WebHandler {
     private List<SoulPlugin> plugins;
 
     /**
+     * 插件是在SoulConfiguration中扫描所有的插件，配置进去的
      * Instantiates a new Soul web handler.
      *
      * @param plugins the plugins
@@ -46,6 +47,10 @@ public final class SoulWebHandler implements WebHandler {
 
     /**
      * Handle the web server exchange.
+     *
+     * 都是通过WebHandler的handle方法去执行所有的插件，
+     * WebHandler是spring-web的组件，是不是意味着也要引入webflux的包。
+     * 从demo的那个pom文件中是有引入webflux的包
      *
      * @param exchange the current server exchange
      * @return {@code Mono<Void>} to indicate when request handling is complete
@@ -58,7 +63,7 @@ public final class SoulWebHandler implements WebHandler {
     }
 
     private static class DefaultSoulPluginChain implements SoulPluginChain {
-
+        // fixme 这个index是哪里初始化进来的？ 难道用的是int的默认值 0
         private int index;
 
         private final List<SoulPlugin> plugins;
@@ -74,6 +79,7 @@ public final class SoulWebHandler implements WebHandler {
 
         /**
          * Delegate to the next {@code WebFilter} in the chain.
+         * 这边使用了责任链的设计模式，通过SoulPluginChain传导下去
          *
          * @param exchange the current server exchange
          * @return {@code Mono<Void>} to indicate when request handling is complete

@@ -84,7 +84,10 @@ public class RateLimiterPlugin extends AbstractSoulPlugin {
         final String handle = rule.getHandle();
 
         final RateLimiterHandle limiterHandle = GsonUtils.getInstance().fromJson(handle, RateLimiterHandle.class);
-
+        /**
+         * isAllowed是去redis查询限流器中是不是还有令牌，
+         * 对没有令牌今天处理，有令牌就无所谓了
+         */
         return redisRateLimiter.isAllowed(rule.getId(), limiterHandle.getReplenishRate(), limiterHandle.getBurstCapacity())
                 .flatMap(response -> {
                     if (!response.isAllowed()) {

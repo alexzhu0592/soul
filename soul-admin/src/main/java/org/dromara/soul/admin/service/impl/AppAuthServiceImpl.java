@@ -78,6 +78,10 @@ public class AppAuthServiceImpl implements AppAuthService {
         }
 
         // publish AppAuthData's event
+        /**
+         * 通过spring的通知机制，通知更新堆内缓存，堆内缓存是实现热更新的一个方法
+         * spring的通知不适合分布式环境的通知，所以soul也提供了通过zk保存数据通知到缓存的方案
+         */
         AppAuthData data = new AppAuthData(appAuthDO.getAppKey(), appAuthDO.getAppSecret(), appAuthDO.getEnabled());
         eventPublisher.publishEvent(new DataChangedEvent(ConfigGroupEnum.APP_AUTH, eventType, Collections.singletonList(data)));
 
@@ -99,6 +103,10 @@ public class AppAuthServiceImpl implements AppAuthService {
             appAuthCount += appAuthMapper.delete(id);
 
             // publish delete event of AppAuthData
+            /**
+             * 通过spring的通知机制，通知更新堆内缓存，堆内缓存是实现热更新的一个方法
+             * spring的通知不适合分布式环境的通知，所以soul也提供了通过zk保存数据通知到缓存的方案
+             */
             AppAuthData data = new AppAuthData(appAuthDO.getAppKey(), appAuthDO.getAppSecret(), appAuthDO.getEnabled());
             eventPublisher.publishEvent(new DataChangedEvent(ConfigGroupEnum.APP_AUTH, DataEventTypeEnum.DELETE, Collections.singletonList(data)));
         }
