@@ -33,6 +33,8 @@ import java.util.List;
 
 /**
  * Event forwarders, which forward the changed events to each ConfigEventListener.
+ * 这是配置数据同步的核心类之一，通过spring容器事件，对事件进行分发处理
+ *
  *
  * @author huangxiaofeng
  * @author xiaoyu
