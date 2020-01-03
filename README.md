@@ -9,7 +9,8 @@
 
 ### alex-src  
   alex-src分支在根据目前架构分析，需要单独维护一个管理后台，增加了运维的复杂度，打算把这一块
-  直接集成到nacos上，nacos已经作为了常用的配置中心和服务注册发现的工具
+  直接集成到nacos上，nacos已经作为了常用的配置中心和服务注册发现的工具  
+  刚刚发现有issue提到过nacos集成的事宜，作者也在3.x的版本中正在开发，拭目以待吧
 
 ### Reactive gateway based on webflux
 
