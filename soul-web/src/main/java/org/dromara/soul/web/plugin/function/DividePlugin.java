@@ -49,7 +49,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Divide Plugin.
+ * Divide Plugin. http代理插件
  *
  * @author xiaoyu(Myth)
  */

@@ -18,12 +18,15 @@
 
 package org.dromara.soul.web.balance.spi;
 
+import com.google.common.hash.Hashing;
 import org.dromara.soul.common.dto.convert.DivideUpstream;
 import org.dromara.soul.common.enums.LoadBalanceEnum;
 import org.dromara.soul.common.exception.SoulException;
 import org.dromara.soul.web.balance.LoadBalance;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -48,7 +51,7 @@ public class HashLoadBalance extends AbstractLoadBalance {
                 treeMap.put(addressHash, address);
             }
         }
-        long hash = hash(String.valueOf(ip));
+        long hash = Hashing.murmur3_32().hashString(String.valueOf(ip), StandardCharsets.UTF_8).asLong();hash(String.valueOf(ip));
         SortedMap<Long, DivideUpstream> lastRing = treeMap.tailMap(hash);
         if (!lastRing.isEmpty()) {
             return lastRing.get(lastRing.firstKey());
@@ -66,6 +69,11 @@ public class HashLoadBalance extends AbstractLoadBalance {
         return LoadBalanceEnum.HASH.getName();
     }
 
+    /**
+     * 这边的hash值 是在对key进行md5加密以后 进行算hash值的，
+     * @param key
+     * @return
+     */
     private static long hash(final String key) {
         // md5 byte
         MessageDigest md5;

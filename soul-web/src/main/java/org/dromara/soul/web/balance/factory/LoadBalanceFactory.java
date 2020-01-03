@@ -33,11 +33,17 @@ import java.util.stream.StreamSupport;
  */
 public class LoadBalanceFactory {
 
+    /**
+     * 把spi下的 lb算法都加载进来了，
+     * 如果想加自己的lb算法，
+     * 只需要自己做一个spi的接口，会自动被这个扫描到
+     **/
     private static final ServiceLoader<LoadBalance> SERVICE_LOADER =
             SpiLoadFactory.loadAll(LoadBalance.class);
 
     /**
      * factory of .
+     * 获取指定的算法，如果指定算法不存在，默认使用随机lb算法
      *
      * @param algorithm param
      * @return LoadBalance load balance

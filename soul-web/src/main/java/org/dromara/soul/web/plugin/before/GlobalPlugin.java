@@ -27,6 +27,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * GlobalPlugin.
+ * 这个插件 啥也没有做，就是转发了请求 fixme ？？？
  *
  * @author xiaoyu(Myth)
  */

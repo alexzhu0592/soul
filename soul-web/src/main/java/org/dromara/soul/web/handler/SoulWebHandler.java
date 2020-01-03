@@ -29,6 +29,8 @@ import java.util.List;
 /**
  * this is web handler request starter.
  *
+ * 通过webflux的webhandler 把插件加载进web处理器
+ *
  * @author xiaoyu(Myth)
  */
 public final class SoulWebHandler implements WebHandler {

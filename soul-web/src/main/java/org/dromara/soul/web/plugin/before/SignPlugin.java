@@ -45,7 +45,7 @@ import java.util.Objects;
 
 /**
  * Sign Plugin.
- *
+ * 签名插件
  * @author xiaoyu(Myth)
  */
 public class SignPlugin extends AbstractSoulPlugin {
@@ -90,6 +90,7 @@ public class SignPlugin extends AbstractSoulPlugin {
 
     /**
      * verify sign .
+     * 主要逻辑，认证签名， 使用了 封装的签名工具类 signUtils
      *
      * @param requestDTO {@linkplain RequestDTO}
      * @return result : True is pass, False is not pass.

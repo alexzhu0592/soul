@@ -32,6 +32,7 @@ public class LoadBalanceUtils {
 
     /**
      * Selector divide upstream.
+     * lb算法会被 divide 和 websocket的插件使用到
      *
      * @param upstreamList the upstream list
      * @param rule         the rule

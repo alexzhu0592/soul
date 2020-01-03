@@ -57,6 +57,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ *
+ * fixme 注意 ！！！ 这边是整个插件的配置入口，
+ * 如果需要自定义插件，需要这边引入自定义的插件
+ *
+ * 如果你的其他包都在使用了@SpringBootApplication注解的main
+ * app所在的包及其下级包，则你什么都不用做，SpringBoot会自动帮你把其他包都扫描了
+ * 如果你有一些bean所在的包，不在main
+ * app的包及其下级包，那么你需要手动加上@ComponentScan注解并指定那个bean所在的包
+ *
  * SoulConfiguration.
  *
  * @author xiaoyu(Myth)
@@ -214,6 +223,8 @@ public class SoulConfiguration {
 
     /**
      * init SoulWebHandler.
+     *
+     * fixme 这边的soulPlugin是哪里 扫描的？ 能把前面的plugin的bean 组装成 List<SoulPlugin> 吗？
      *
      * @param plugins this plugins is All impl SoulPlugin.
      * @return {@linkplain SoulWebHandler}

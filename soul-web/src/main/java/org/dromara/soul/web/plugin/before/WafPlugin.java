@@ -44,7 +44,7 @@ import java.util.Objects;
 
 /**
  * use waf plugin we can control some access.
- *
+ * 防火墙插件
  * @author xiaoyu(Myth)
  */
 public class WafPlugin extends AbstractSoulPlugin {
